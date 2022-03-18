@@ -17,6 +17,16 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
+/* will-henney 2022-03-17: Home row modifiers with Mod-Tap. The length
+   of time that is considered a hold is controlled by TAPPING_TERM
+   parameter in config.h */
+#define M_S_CMD MT(MOD_LGUI, KC_S)
+#define M_D_OPT MT(MOD_LALT, KC_D)
+#define M_F_CTL MT(MOD_LCTL, KC_F)
+#define M_L_CMD MT(MOD_RGUI, KC_L)
+#define M_K_OPT MT(MOD_RALT, KC_K)
+#define M_J_CTL MT(MOD_RCTL, KC_J)
+
 enum preonic_layers {
   _QWERTY,
   _COLEMAK,
@@ -43,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |Enter |
+ * | Esc  |   A  |S/CMD |D/OPT |F/CTL |   G  |   H  |J/CTL |K/OPT |L/CMD |   ;  |Enter |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -53,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_preonic_grid(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
-  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+  KC_ESC,  KC_A,    M_S_CMD, M_D_OPT, M_F_CTL, KC_G,    KC_H,    M_J_CTL, M_K_OPT, M_L_CMD, KC_SCLN, KC_ENT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   KC_QUOT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),

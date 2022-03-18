@@ -16,6 +16,13 @@
 
 #pragma once
 
+/* will-henney 2022-03-17: How long a key must be held down to
+   activate the modifier in a Mod-Tap.  I use this for home row
+   mofifiers */
+#define TAPPING_TERM 300
+
+
+
 #ifdef AUDIO_ENABLE
 #    define STARTUP_SONG SONG(PREONIC_SOUND)
 // #define STARTUP_SONG SONG(NO_SOUND)
