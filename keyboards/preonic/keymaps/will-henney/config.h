@@ -20,6 +20,7 @@
    activate the modifier in a Mod-Tap.  I use this for home row
    mofifiers */
 #define TAPPING_TERM 300
+#define IGNORE_MOD_TAP_INTERRUPT
 
 
 
