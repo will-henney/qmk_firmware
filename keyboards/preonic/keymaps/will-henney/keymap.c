@@ -27,6 +27,14 @@
 #define M_K_OPT MT(MOD_RALT, KC_K)
 #define M_J_CTL MT(MOD_RCTL, KC_J)
 
+/* will-henney 2022-03-18: Layer taps to combine layer-activation (on
+   hold) with another key (on tap). I use these so that arrow keys
+   either side of space bar can double as RAISE and LOWER */
+#define LT_L(kc) LT(_LOWER, kc)
+#define LT_R(kc) LT(_RAISE, kc)
+#define LT_L_RT LT_L(KC_RGHT)
+#define LT_R_UP LT_R(KC_UP)
+
 enum preonic_layers {
   _QWERTY,
   _COLEMAK,
@@ -57,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   '  |   \  | Left |Right |Lower |    Space    |Raise |  Up  | Down |   [  |  ]   |
+ * |   '  | Home | End  | Left |Lwr/Rt|    Space    |Rse/Up| Down |   [  |  ]   |  \  | 
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
@@ -65,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_EQL,  KC_A,    M_S_CMD, M_D_OPT, M_F_CTL, KC_G,    KC_H,    M_J_CTL, M_K_OPT, M_L_CMD, KC_SCLN, KC_ENT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  KC_QUOT, KC_BSLS, KC_LEFT, KC_RGHT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC
+  KC_QUOT, KC_HOME, KC_END,  KC_LEFT, LT_L_RT, KC_SPC,  KC_SPC,  LT_R_UP, KC_DOWN, KC_LBRC, KC_RBRC, KC_BSLS
 ),
 
 /* Colemak
