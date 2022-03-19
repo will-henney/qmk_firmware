@@ -34,6 +34,8 @@
 #define LT_R(kc) LT(_RAISE, kc)
 #define LT_L_RT LT_L(KC_RGHT)
 #define LT_R_UP LT_R(KC_UP)
+#define LT_HOME LT(_SPANISH, KC_HOME)
+#define LT_END LT(_USPANISH, KC_END)
 
 enum preonic_layers {
   _QWERTY,
@@ -41,7 +43,9 @@ enum preonic_layers {
   _DVORAK,
   _LOWER,
   _RAISE,
-  _ADJUST
+  _ADJUST,
+  _SPANISH,
+  _USPANISH
 };
 
 enum preonic_keycodes {
@@ -50,7 +54,21 @@ enum preonic_keycodes {
   DVORAK,
   LOWER,
   RAISE,
-  BACKLIT
+  BACKLIT,
+  A_ACC,
+  E_ACC,
+  I_ACC,
+  O_ACC,
+  U_ACC,
+  N_TIL,
+  QMK_UP,
+  EMK_UP,
+  A_UACC,
+  E_UACC,
+  I_UACC,
+  O_UACC,
+  U_UACC,
+  N_UTIL
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -73,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_EQL,  KC_A,    M_S_CMD, M_D_OPT, M_F_CTL, KC_G,    KC_H,    M_J_CTL, M_K_OPT, M_L_CMD, KC_SCLN, KC_ENT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  KC_QUOT, KC_HOME, KC_END,  KC_LEFT, LT_L_RT, KC_SPC,  KC_SPC,  LT_R_UP, KC_DOWN, KC_LBRC, KC_RBRC, KC_BSLS
+  KC_QUOT, LT_HOME, LT_END,  KC_LEFT, LT_L_RT, KC_SPC,  KC_SPC,  LT_R_UP, KC_DOWN, KC_LBRC, KC_RBRC, KC_BSLS
 ),
 
 /* Colemak
@@ -179,6 +197,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______,
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
+/* SPANISH - lower case accented letters
+ * ,-----------------------------------------------------------------------------------.
+ * |      |   ¡  |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |   é  |      |      |      |   ú  |   í  |   ó  |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |   á  |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |   ñ  |      |      |      |   ¿  |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_SPANISH] = LAYOUT_preonic_grid(
+  _______, EMK_UP,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, E_ACC,   _______, _______, _______, U_ACC,   I_ACC,   O_ACC,   _______, _______,
+  _______, A_ACC,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, N_TIL,   _______, _______, _______, QMK_UP,  _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
+/* USPANISH - upper case accented letters
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |   É  |      |      |      |   Ú  |   Í  |   Ó  |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |   Á  |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |   Ñ  |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_USPANISH] = LAYOUT_preonic_grid(
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, E_UACC,  _______, _______, _______, U_UACC,  I_UACC,  O_UACC,  _______, _______,
+  _______, A_UACC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, N_UTIL,  _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
 
@@ -186,66 +246,150 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-        case QWERTY:
-          if (record->event.pressed) {
-            set_single_persistent_default_layer(_QWERTY);
-          }
-          return false;
-          break;
-        case COLEMAK:
-          if (record->event.pressed) {
-            set_single_persistent_default_layer(_COLEMAK);
-          }
-          return false;
-          break;
-        case DVORAK:
-          if (record->event.pressed) {
-            set_single_persistent_default_layer(_DVORAK);
-          }
-          return false;
-          break;
-        case LOWER:
-          if (record->event.pressed) {
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-          } else {
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-          }
-          return false;
-          break;
-        case RAISE:
-          if (record->event.pressed) {
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-          } else {
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-          }
-          return false;
-          break;
-        case BACKLIT:
-          if (record->event.pressed) {
-            register_code(KC_RSFT);
-            #ifdef BACKLIGHT_ENABLE
-              backlight_step();
-            #endif
-            #ifdef RGBLIGHT_ENABLE
-              rgblight_step();
-            #endif
-            #ifdef __AVR__
-            writePinLow(E6);
-            #endif
-          } else {
-            unregister_code(KC_RSFT);
-            #ifdef __AVR__
-            writePinHigh(E6);
-            #endif
-          }
-          return false;
-          break;
-      }
-    return true;
+  case QWERTY:
+	if (record->event.pressed) {
+	  set_single_persistent_default_layer(_QWERTY);
+	}
+	return false;
+	break;
+  case COLEMAK:
+	if (record->event.pressed) {
+	  set_single_persistent_default_layer(_COLEMAK);
+	}
+	return false;
+	break;
+  case DVORAK:
+	if (record->event.pressed) {
+	  set_single_persistent_default_layer(_DVORAK);
+	}
+	return false;
+	break;
+  case LOWER:
+	if (record->event.pressed) {
+	  layer_on(_LOWER);
+	  update_tri_layer(_LOWER, _RAISE, _ADJUST);
+	} else {
+	  layer_off(_LOWER);
+	  update_tri_layer(_LOWER, _RAISE, _ADJUST);
+	}
+	return false;
+	break;
+  case RAISE:
+	if (record->event.pressed) {
+	  layer_on(_RAISE);
+	  update_tri_layer(_LOWER, _RAISE, _ADJUST);
+	} else {
+	  layer_off(_RAISE);
+	  update_tri_layer(_LOWER, _RAISE, _ADJUST);
+	}
+	return false;
+	break;
+  case BACKLIT:
+	if (record->event.pressed) {
+	  register_code(KC_RSFT);
+#ifdef BACKLIGHT_ENABLE
+	  backlight_step();
+#endif
+#ifdef RGBLIGHT_ENABLE
+	  rgblight_step();
+#endif
+#ifdef __AVR__
+	  writePinLow(E6);
+#endif
+	} else {
+	  unregister_code(KC_RSFT);
+#ifdef __AVR__
+	  writePinHigh(E6);
+#endif
+	}
+	return false;
+	break;
+  case EMK_UP:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_1)));
+	  
+    }
+    break;
+  case E_ACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_E));
+	  
+    }
+    break;
+  case A_ACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_A));
+	  
+    }
+    break;
+  case U_ACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_U));
+	  
+    }
+    break;
+  case I_ACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_I));
+	  
+    }
+    break;
+  case O_ACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_O));
+	  
+    }
+    break;
+  case N_TIL:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_N)) SS_DELAY(100) SS_TAP(X_N));
+
+    }
+    break;
+  case QMK_UP:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_LSFT(SS_TAP(X_SLASH))));
+
+    }
+    break;
+  case E_UACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_E)));
+
+    }
+    break;
+  case A_UACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_A)));
+
+    }
+    break;
+  case U_UACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_U)));
+
+    }
+    break;
+  case I_UACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_I)));
+
+    }
+    break;
+  case O_UACC:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_O)));
+
+    }
+    break;
+  case N_UTIL:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_N)) SS_DELAY(100) SS_LSFT(SS_TAP(X_N)));
+
+    }
+    break;
+  }
+  return true;
 };
 
 bool muse_mode = false;
