@@ -21,6 +21,7 @@
    of time that is considered a hold is controlled by TAPPING_TERM
    parameter in config.h */
 #define M_S_CMD MT(MOD_LGUI, KC_S)
+#define M_Q_CMD MT(MOD_LGUI, KC_Q)
 #define M_D_OPT MT(MOD_LALT, KC_D)
 #define M_F_CTL MT(MOD_LCTL, KC_F)
 #define M_L_CMD MT(MOD_RGUI, KC_L)
@@ -77,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * | Tab  |Q/CMD |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  -   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |  =   |   A  |S/CMD |D/OPT |F/CTL |   G  |   H  |J/CTL |K/OPT |L/CMD |   ;  |Enter |                      
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_preonic_grid(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+  KC_TAB,  M_Q_CMD, KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_EQL,  KC_A,    M_S_CMD, M_D_OPT, M_F_CTL, KC_G,    KC_H,    M_J_CTL, M_K_OPT, M_L_CMD, KC_SCLN, KC_ENT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   KC_QUOT, LT_HOME, LT_END,  KC_LEFT, LT_L_RT, KC_SPC,  KC_SPC,  LT_R_UP, KC_DOWN, KC_LBRC, KC_RBRC, KC_BSLS
