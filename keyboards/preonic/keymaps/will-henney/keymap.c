@@ -313,37 +313,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
   case E_ACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_E));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_TAP(X_E));
 	  
     }
     break;
   case A_ACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_A));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_TAP(X_A));
 	  
     }
     break;
   case U_ACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_U));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_TAP(X_U));
 	  
     }
     break;
   case I_ACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_I));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_TAP(X_I));
 	  
     }
     break;
   case O_ACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_TAP(X_O));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_TAP(X_O));
 	  
     }
     break;
   case N_TIL:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_N)) SS_DELAY(100) SS_TAP(X_N));
+      SEND_STRING(SS_LALT(SS_TAP(X_N)) SS_DELAY(30) SS_TAP(X_N));
 
     }
     break;
@@ -355,37 +355,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
   case E_UACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_E)));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_LSFT(SS_TAP(X_E)));
 
     }
     break;
   case A_UACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_A)));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_LSFT(SS_TAP(X_A)));
 
     }
     break;
   case U_UACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_U)));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_LSFT(SS_TAP(X_U)));
 
     }
     break;
   case I_UACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_I)));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_LSFT(SS_TAP(X_I)));
 
     }
     break;
   case O_UACC:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(100) SS_LSFT(SS_TAP(X_O)));
+      SEND_STRING(SS_LALT(SS_TAP(X_E)) SS_DELAY(30) SS_LSFT(SS_TAP(X_O)));
 
     }
     break;
   case N_UTIL:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_N)) SS_DELAY(100) SS_LSFT(SS_TAP(X_N)));
+      SEND_STRING(SS_LALT(SS_TAP(X_N)) SS_DELAY(30) SS_LSFT(SS_TAP(X_N)));
 
     }
     break;
