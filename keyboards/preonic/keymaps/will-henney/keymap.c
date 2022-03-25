@@ -35,8 +35,8 @@
 #define LT_R(kc) LT(_RAISE, kc)
 #define LT_L_RT LT_L(KC_RGHT)
 #define LT_R_UP LT_R(KC_UP)
-#define LT_HOME LT(_SPANISH, KC_HOME)
-#define LT_END LT(_USPANISH, KC_END)
+#define LT_Z LT(_SPANISH, KC_Z)
+#define LT_SLASH LT(_SPANISH, KC_SLASH)
 
 enum preonic_layers {
   _QWERTY,
@@ -82,17 +82,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |  =   |   A  |S/CMD |D/OPT |F/CTL |   G  |   H  |J/CTL |K/OPT |L/CMD |   ;  |Enter |                      
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Shift |
+ * | Shift| Z [*]|   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  | / [*]|Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   '  | Home | End  | Left |Lwr/Rt|    Space    |Rse/Up| Down |   [  |  ]   |  \  | 
+ * |   '  |   \  | Left |Right |Lower |    Space    |Raise |  Up  | Down |   [  |  ]   | 
  * `-----------------------------------------------------------------------------------'
+ * [*] Activates SPANISH layer on hold
  */
 [_QWERTY] = LAYOUT_preonic_grid(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_TAB,  M_Q_CMD, KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_EQL,  KC_A,    M_S_CMD, M_D_OPT, M_F_CTL, KC_G,    KC_H,    M_J_CTL, M_K_OPT, M_L_CMD, KC_SCLN, KC_ENT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  KC_QUOT, LT_HOME, LT_END,  KC_LEFT, LT_L_RT, KC_SPC,  KC_SPC,  LT_R_UP, KC_DOWN, KC_LBRC, KC_RBRC, KC_BSLS
+  KC_LSFT, LT_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  LT_SLASH, KC_RSFT,
+  KC_QUOT, KC_BSLS, KC_LEFT, KC_RGHT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC
 ),
 
 /* Colemak
@@ -145,17 +146,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Del  |      |      |  Up  |      |      |      |   _  |   +  |   {  |   }  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      | Left | Down | Right|      |      |ISO ~ |ISO | | Home | End  |  "   |
+ * |      |      | Left | Down | Right|      |      |      |  "   |      |  |   |  "   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+ * |      |      | Home | End  |      |             |      | Pg Up| Pg Dn|      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid(
   KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______, 
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
   KC_DEL,  _______, _______, KC_UP  , _______, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-  _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,S(KC_NUHS),S(KC_NUBS),KC_HOME, KC_END, KC_DQUO,
-  _______, _______, _______, _______, _______, _______, _______,MO(_ADJUST),KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+  _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, KC_DQUO, _______, KC_PIPE, KC_DQUO,
+  _______, _______, KC_HOME, KC_END, _______, _______, _______,MO(_ADJUST), KC_PGUP, KC_PGDN, _______, _______
 ),
 
 /* Raise
@@ -166,17 +167,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Del  |      |      |  Up  |      |      |      |   -  |   =  |   [  |   ]  |  \   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      | Left | Down | Right|      |      |ISO # |ISO / | Pg Up| Pg Dn|  '   |
+ * |      |      | Left | Down | Right|      |      |      |  '   |      |  \   |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+ * |      |      | Home | End  |      |             |      | Pg Up| Pg Dn|      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_preonic_grid(
   KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______, 
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
   KC_DEL,  _______, _______, KC_UP  , _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-  _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, KC_QUOT,
-  _______, _______, _______, _______,MO(_ADJUST),_______,_______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+  _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, KC_QUOT, _______, KC_BSLS, KC_QUOT,
+  _______, _______, KC_HOME, KC_END,MO(_ADJUST),_______,_______, _______, KC_PGUP, KC_PGDN, _______, _______
 ),
 
 /* Adjust (Lower + Raise)
@@ -189,7 +190,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|MusOff|MidiOn|MidOff|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_preonic_grid(
@@ -197,14 +198,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, RESET,   DEBUG,   _______, _______, _______, _______, TERM_ON, TERM_OFF,_______, _______, KC_DEL,
   _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______,
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
 
 /* SPANISH - lower case accented letters
  * ,-----------------------------------------------------------------------------------.
  * |      |   ¡  |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |   é  |      |      |      |   ú  |   í  |   ó  |      |      |
+ * |      |   ¡  |      |   é  |      |      |      |   ú  |   í  |   ó  |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |   á  |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -215,9 +216,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SPANISH] = LAYOUT_preonic_grid(
   _______, EMK_UP,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, E_ACC,   _______, _______, _______, U_ACC,   I_ACC,   O_ACC,   _______, _______,
+  _______, EMK_UP, _______, E_ACC,   _______, _______, _______, U_ACC,   I_ACC,   O_ACC,   _______, _______,
   _______, A_ACC,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, N_TIL,   _______, _______, _______, QMK_UP,  _______,
+  MO(_USPANISH), _______, _______, _______, _______, _______, N_TIL, _______, _______, _______, QMK_UP, MO(_USPANISH),
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
