@@ -153,12 +153,11 @@ void protocol_task(void) {
         if (usbConfiguration && usbInterruptIsReady()) {
             keyboard_task();
         }
-        vusb_transfer_keyboard();
 
 #ifdef RAW_ENABLE
         usbPoll();
 
-        if (usbConfiguration && usbInterruptIsReady3()) {
+        if (usbConfiguration && usbInterruptIsReady4()) {
             raw_hid_task();
         }
 #endif
