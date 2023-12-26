@@ -1,0 +1,4 @@
+#undef TAPPING_TERM
+#define TAPPING_TERM 300
+
+#define COMBO_TERM 50
