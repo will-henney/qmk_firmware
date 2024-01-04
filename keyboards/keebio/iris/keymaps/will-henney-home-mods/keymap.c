@@ -20,8 +20,8 @@
 #define HM_SCLN MT(MOD_RGUI, KC_SCLN)
 
 // dual use of the layer switch keys
-#define MT_RAISE MT(MO(_RAISE), KC_BSPC)
-#define MT_LOWER MT(MO(_LOWER), KC_DEL)
+#define LT_RAISE LT(_RAISE, KC_SPC)
+#define LT_LOWER LT(_LOWER, KC_ENT)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          KC_END,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_TAB, MO(_LOWER), KC_ENT,                   KC_SPC, MO(_RAISE), KC_GRAVE
+                                    KC_TAB, LT_LOWER, KC_ENT,                   KC_SPC, LT_RAISE, KC_GRAVE
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
