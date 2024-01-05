@@ -1,5 +1,7 @@
-// Copyright 2023 Danny Nguyen (@nooges)
+// Copyright 2023 Danny Nguyen (@nooges) and William Henney (@will-henney)
 // SPDX-License-Identifier: GPL-2.0-or-later
+
+// Key layout for Iris split keyboard with home-row modifiers
 
 #include QMK_KEYBOARD_H
 
@@ -19,9 +21,31 @@
 #define HM_L MT(MOD_RALT, KC_L)
 #define HM_SCLN MT(MOD_RGUI, KC_SCLN)
 
-// dual use of the layer switch keys
+// dual use of the bottom row layer switch keys
 #define LT_RAISE LT(_RAISE, KC_SPC)
 #define LT_LOWER LT(_LOWER, KC_ENT)
+
+// and also add more RAISE layer switch keys on the inside column of home row
+//
+#define HM_G LT(_RAISE, KC_G)
+#define HM_H LT(_RAISE, KC_H)
+
+// The reason for making both sides be RAISE is that we can use a
+// combo to get LOWER
+//
+// The reason that this makes logical sense is that the LOWER layer
+// has mainly shifted versions of keys in the RAISE layer, so we have
+// a combo with the home row SHIFT mod
+enum combos {
+  HJ_LOWER,
+  FG_LOWER,
+};
+const uint16_t PROGMEM hj_combo[] = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM fg_combo[] = {KC_F, KC_G, COMBO_END};
+combo_t key_combos[] = {
+  [HJ_LOWER] = COMBO(hj_combo, MO(_LOWER)),
+  [FG_LOWER] = COMBO(fg_combo, MO(_LOWER)),
+};
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -32,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,  GUI_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_ESC, HM_A,    HM_S,    HM_D,    HM_F,    KC_G,                               KC_H,    HM_J,    HM_K,    HM_L,    HM_SCLN, KC_ENTER,
+     KC_ESC, HM_A,    HM_S,    HM_D,    HM_F,    HM_G,                               HM_H,    HM_J,    HM_K,    HM_L,    HM_SCLN, KC_ENTER,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          KC_END,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
