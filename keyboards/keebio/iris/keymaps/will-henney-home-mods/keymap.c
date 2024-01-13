@@ -22,6 +22,9 @@
 #define HM_L MT(MOD_RALT, KC_L)
 #define HM_SCLN MT(MOD_RGUI, KC_SCLN)
 
+// Alternative LALT to  replace weak left ring finger
+#define HM_C MT(MOD_LALT, KC_C)
+
 // 2024-01-08 - I decided dedicated layer keys is better
 /* // dual use of the bottom row layer switch keys */
 /* #define LT_RAISE LT(_RAISE, KC_SPC) */
@@ -64,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      MO(_NUMPAD), HM_A, HM_S,    HM_D,    HM_F,    KC_G,                               KC_H,    HM_J,    HM_K,    HM_L,    HM_SCLN, KC_ENTER,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          KC_END,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+     KC_LSFT, KC_Z,    KC_X,    HM_C,    KC_V,    KC_B,    KC_HOME,          KC_END,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
 	                                KC_TAB, MO(_LOWER), KC_ENT,                   KC_SPC, MO(_RAISE), KC_GRAVE
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -146,3 +149,15 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif
 
 
+#ifdef TAPPING_TERM_PER_KEY
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case HM_A: case HM_S: case HM_L: case HM_SCLN:
+	// Weaker fingers get a longer tapping term since it is harder to
+	// tap crisply with fingers 3 and 4
+	return TAPPING_TERM + 100;
+  default:
+	return TAPPING_TERM;
+  }
+}
+#endif
